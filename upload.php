@@ -1,5 +1,6 @@
 <?php
 
+// Criacao de um arrai para erros!
 $erro = $config = array();
 
 // Prepara a variavel do arquivo
@@ -18,7 +19,7 @@ $config["altura"]  = 640;
 if(getimagesize($_FILES["logo"]["tmp_name"])==true)
 {  
     // Verifica se o mime-type do arquivo de imagem
-    if($arquivo["type"]!=("jpeg"||"jpg"||"gig"||"png"))
+    if($arquivo["type"]!=("jpeg"||"jpg"||"gif"||"png"))
     {
       $erro[] = "<script>alert('Arquivo invalido! A imagem deve ser jpg, jpeg, bmp, gif ou png. Envie outro arquivo!!!');</script>";
     }
@@ -65,7 +66,7 @@ if(getimagesize($_FILES["logo"]["tmp_name"])==true)
       // Gera um nome unico para a imagem atraves de um HASH de criptografia em MD% e o time do servidor
       $imagem_nome =       md5(uniqid(time())) . "." . $ext[1];
 
-      // Caminho de onde a imagem ficar�
+      // Caminho de onde a imagem ficar
       $imagem_dir = "uploads/" . $imagem_nome;
 
       // Faz o upload da imagem
