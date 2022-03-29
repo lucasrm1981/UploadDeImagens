@@ -1,6 +1,6 @@
 <?php
 
-// Criacao de um arrai para erros!
+// Criacao de um array para erros!
 $erro = $config = array();
 
 // Prepara a variavel do arquivo
@@ -21,14 +21,14 @@ if(getimagesize($_FILES["logo"]["tmp_name"])==true)
     // Verifica se o mime-type do arquivo de imagem
     if($arquivo["type"]!=("jpeg"||"jpg"||"gif"||"png"))
     {
-      $erro[] = "<script>alert('Arquivo invalido! A imagem deve ser jpg, jpeg, bmp, gif ou png. Envie outro arquivo!!!');</script>";
+      $erro[] = "Somenete arquivos jpg, jpeg, bmp, gif ou png.!!!";
     }
     else
     {
         // Verifica tamanho do arquivo
         if($arquivo["size"] > $config["tamanho"])
         {
-            $erro[] = "<script>alert('Arquivo em tamanho muito grande!	A imagem deve ser de no maximo " . $config["tamanho"] . " bytes(200K). Envie outro arquivo!!!');</script>";
+            $erro[] = "Tamanho maximo " . $config["tamanho"] . " bytes(200K)!!!'";
         }
 
         // Para verificar as dimensaes da imagem
@@ -37,25 +37,27 @@ if(getimagesize($_FILES["logo"]["tmp_name"])==true)
         // Verifica largura
         if($tamanhos[0] > $config["largura"])
         {
-          $erro[] = "<script>alert('Largura da imagem nao deve ultrapassar " . $config["largura"] . " pixels!!!');</script>";
+          $erro[] = "Largura Maxima " . $config["largura"] . " pixels!!!";
         }
 
         // Verifica altura
         if($tamanhos[1] > $config["altura"])
         {
-          $erro[] = "<script>alert('Altura da imagem nao deve ultrapassar " . $config["altura"] . " pixels!!!');</script>";
+          $erro[] = "Altura Maxima " . $config["altura"] . " pixels!!!'";
         }
     }
 
-    // Imprime as mensagens de erro
+    
+$msg = "";
+    // Imprime as mensagens de erro através de um array criado
     if(sizeof($erro))
     {
         foreach($erro as $err)
         {
-            echo " - " . $err . "<BR>";
-        }
+            $msg = $msg." - " . $err."<br/>";
+        }echo $msg."<a href='index.php'><input type='submit' value='Voltar' name='submit'></a>";
     }
-
+    
     // Verificacao de dados
     // Nenhum erro, executa entao o upload...
     else
@@ -77,5 +79,4 @@ if(getimagesize($_FILES["logo"]["tmp_name"])==true)
   } else {
     echo "<script>alert('Arquivo Invalido!!');history.back();</script>";
   }
-
 ?>
